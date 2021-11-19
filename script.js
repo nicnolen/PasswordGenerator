@@ -12,14 +12,13 @@ var numberArr = numberStr.split("");
 var symbolArr = symbolStr.split("");
 
 // Define empty arrays for userSelection and finalPassword
-var userSelection = [];
-var finalPassword = [];
-
-// Get references to the #generate element
+// Get references to the #generate and #password element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function generatePassword() {
+  var finalPassword = [];
+  var userSelection = [];
   // Define password Length
   var passLength = window.prompt("How long do you want your password? (Must be between 8 and 128 characters)")
   // Check empty password field
@@ -48,7 +47,7 @@ function generatePassword() {
       // Make if statements to say that if you want a certain character, add that array to the end of the current array (.concat)
       if (isUpper === true) {
         userSelection = userSelection.concat(upperArr)
-      }
+      } 
       if (isLower === true) {
         userSelection = userSelection.concat(lowerArr)
       }
@@ -63,21 +62,22 @@ function generatePassword() {
       for (var i = 0; i < passLength; i++) {
         var randomIndex = Math.floor(Math.random() * userSelection.length); // Math.random picks a number between 0 and 1 NOT including 1. .length starts at 1 and will be 1 number longer then the zero-indexed array. Math floor rounds down to the nearest whole number, which is why .length will make the array the length we want
         var passDigit = userSelection[randomIndex]
-        finalPassword = finalPassword.concat(passDigit)
+        finalPassword += passDigit
       }
-
+      console.log(finalPassword);
       // turn array into string using .join("")
-      var results = finalPassword.join("");
-      return results;
+      // var results = finalPassword.join("");
+      return finalPassword;
     }
 }
-function writePassword() {
-  var password = generatePassword();
-  var passwordText = document.querySelector("#password");
 
+function writePassword() {
+  var passwordText = document.querySelector("#password");
+  var password = generatePassword();
   // Set password length 
-  passwordText.value = password;
+  passwordText.textContent = password;
 }
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
