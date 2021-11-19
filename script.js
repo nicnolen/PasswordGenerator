@@ -11,12 +11,12 @@ var lowerArr = lowerCaseStr.split("");
 var numberArr = numberStr.split("");
 var symbolArr = symbolStr.split("");
 
-// Define empty arrays for userSelection and finalPassword
 // Get references to the #generate and #password element
 var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function generatePassword() {
+  // Empty arrays must be local variables in order to reset. If they are global variables, each time the generatePassword() function runs, the new password will be added to the old password
   var finalPassword = [];
   var userSelection = [];
   // Define password Length
@@ -64,17 +64,17 @@ function generatePassword() {
         var passDigit = userSelection[randomIndex]
         finalPassword += passDigit
       }
-      console.log(finalPassword);
-      // turn array into string using .join("")
-      // var results = finalPassword.join("");
+      
+      // Return the password
       return finalPassword;
     }
 }
 
+// Function to write the password
 function writePassword() {
   var passwordText = document.querySelector("#password");
   var password = generatePassword();
-  // Set password length 
+  // Says that generatePassword function is equal to ALL the content in the element with the id password 
   passwordText.textContent = password;
 }
 
