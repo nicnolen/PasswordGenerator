@@ -19,15 +19,17 @@ function generatePassword() {
   // Empty arrays must be local variables in order to reset. If they are global variables, each time the generatePassword() function runs, the new password will be added to the old password
   var finalPassword = [];
   var userSelection = [];
+
   // Define password Length
   var passLength = window.prompt("How long do you want your password? (Must be between 8 and 128 characters)")
+  
   // Check empty password field
   if (passLength === "") {
     window.alert("Please fill in the password.");
     return;
     }
     // Validate minimum password length
-    else if (passLength > 0 && passLength < 8) {
+    else if (passLength < 8) {
       window.alert("Password length must be greater than 8.");
       return;
     }
